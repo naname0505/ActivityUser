@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private final static int MYREQCODE = 1234;
 
-    TextView answerView;
+    TextView   answerView;
     RadioGroup requestGroup;
 
     @Override
@@ -35,11 +35,20 @@ public class MainActivity extends AppCompatActivity {
                 request = getString(R.string.request_3_text);
                 break;
         }
+        /*
         Intent intent = new Intent();
         intent.setClassName("jp.ac.titech.itpro.sdl.activityprovider",
                 "jp.ac.titech.itpro.sdl.activityprovider.PublicActivity");
-        intent.putExtra("request", request);
+         */
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, request);
+        sendIntent.setType("text/plain");
+        startActivityForResult(sendIntent, MYREQCODE);
+        /*intent.putExtra("request", request);
         startActivityForResult(intent, MYREQCODE);
+        */
     }
 
     @Override
